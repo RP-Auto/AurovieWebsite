@@ -1,0 +1,124 @@
+/* src/pages/Landing/sections/AboutSection.module.css */
+
+/* --- Main Layout --- */
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5rem 1.25rem;
+  gap: 3rem;
+  background-color: #f8fafc; /* Matches your other sections */
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    flex-direction: row;
+    padding: 10rem 8rem;
+    gap: 4rem;
+  }
+}
+
+/* --- Content Side (Left) --- */
+.contentWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .contentWrapper {
+    width: 60%;
+  }
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0f172a; /* slate-900 */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .sectionTitle {
+    font-size: 2.5rem;
+    text-align: left;
+  }
+}
+
+/* --- Premium Highlight Cards --- */
+.highlightCard {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(224, 231, 255, 0.6); /* indigo-100 */
+  padding: 1.75rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  
+  /* Smooth hardware-accelerated transitions */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.4s ease;
+  will-change: transform, box-shadow;
+}
+
+.highlightCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(199, 210, 254, 0.8); /* indigo-200 */
+}
+
+.cardHeading {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #312e81; /* indigo-900 */
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.025em;
+}
+
+.cardText {
+  font-size: 1.125rem;
+  color: #334155; /* slate-700 */
+  line-height: 1.75;
+  text-align: justify;
+}
+
+@media (min-width: 1024px) {
+  .cardText {
+    text-align: left;
+  }
+}
+
+/* --- Media Side (Right) --- */
+.mediaWrapper {
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  /* Anti-flicker for the video container */
+  transform: translateZ(0);
+}
+
+@media (min-width: 1024px) {
+  .mediaWrapper {
+    width: 40%;
+  }
+}
+
+.videoElement {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block; /* Removes bottom spacing bug on media elements */
+  /* Hardware acceleration for smooth playback while scrolling */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+}

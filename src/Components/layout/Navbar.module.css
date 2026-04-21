@@ -1,0 +1,327 @@
+/* src/components/layout/Navbar.module.css */
+
+/* --- Header Container --- */
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease-in-out;
+}
+
+.headerSticky {
+  top: 0;
+}
+
+.headerNormal {
+  top: 0;
+}
+
+@media (min-width: 1024px) {
+  .headerNormal {
+    top: 2.5rem;
+  }
+}
+
+/* --- Inner Navbar Box --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  
+  /* Uses the CSS variable passed from React for the background GIF */
+  background-image: var(--nav-bg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.navbarSticky {
+  background-color: #312e81; /* indigo-900 fallback */
+  border-radius: 0;
+  margin: 0;
+}
+
+.navbarNormal {
+  background-color: #312e81; /* indigo-900 fallback */
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbarNormal {
+    margin: 0 8rem;
+    border-radius: 9999px;
+  }
+}
+
+/* --- Logo --- */
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logoImage {
+  height: 2.5rem;
+  width: auto;
+  margin-left: 2vw;
+  transition: transform 0.3s ease;
+}
+
+.logoImage:hover {
+  transform: scale(1.05);
+}
+
+@media (min-width: 1024px) {
+  .logoImage {
+    height: 3.5rem;
+  }
+}
+
+/* --- Desktop Navigation --- */
+.desktopNav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktopNav {
+    display: flex;
+    align-items: center;
+    margin-right: 3vw;
+    gap: 2rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+}
+
+.navLink {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.navLink:hover {
+  color: #f472b6; /* pink-400 */
+}
+
+/* --- Desktop Dropdown --- */
+.dropdownWrapper {
+  position: relative;
+}
+
+.dropdownBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #ffffff;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.dropdownBtn:hover {
+  color: #f472b6;
+}
+
+.dropdownIcon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdownWrapper:hover .dropdownIcon {
+  transform: rotate(180deg);
+}
+
+/* Invisible bridge to prevent accidental menu closing */
+.hoverBridge {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  width: 12rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f5f9;
+  
+  /* Hidden State */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transform-origin: top;
+  transition: all 0.3s ease;
+  
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Show Menu on Hover */
+.dropdownWrapper:hover .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.dropdownItem {
+  padding: 0.75rem 1.25rem;
+  color: #334155;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.dropdownItem:last-child {
+  border-bottom: none;
+}
+
+.dropdownItem:hover {
+  background-color: #fdf2f8; /* pink-50 */
+  color: #db2777; /* pink-600 */
+}
+
+/* --- Mobile Navigation --- */
+.mobileToggleBtn {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .mobileToggleBtn {
+    display: none;
+  }
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #1e1b4b; /* indigo-950 */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Slide Animation */
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
+}
+
+@media (min-width: 1024px) {
+  .mobileMenu {
+    display: none;
+  }
+}
+
+.mobileMenuOpen {
+  transform: translateX(0);
+}
+
+.mobileLink {
+  padding: 0.75rem 2rem;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.mobileLink:hover {
+  color: #f472b6;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* --- Mobile Accordion --- */
+.mobileAccordionWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileAccordionBtn {
+  padding: 0.75rem 2rem;
+  color: #ffffff;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobileAccordionBtn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.mobileAccordionIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.mobileAccordionIconOpen {
+  transform: rotate(180deg);
+  color: #f472b6;
+}
+
+.mobileAccordionContent {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(49, 46, 129, 0.5); /* indigo-900 with opacity */
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  max-height: 0;
+}
+
+.mobileAccordionContentOpen {
+  max-height: 16rem; /* Enough height to show all links */
+}
+
+.mobileSublink {
+  padding: 0.75rem 3rem;
+  color: #c7d2fe; /* indigo-200 */
+  text-decoration: none;
+  font-size: 1.125rem;
+  transition: color 0.3s ease;
+}
+
+.mobileSublink:hover {
+  color: #f472b6;
+}
