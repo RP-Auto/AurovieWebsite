@@ -3,42 +3,36 @@
 .section {
   position: relative;
   width: 100%;
-  padding-top: 1rem;
+  /* Fluid padding: 2rem on mobile, up to 4rem on desktop */
+  padding-top: clamp(2rem, 5vw, 4rem);
   background-color: #f8fafc;
+  /* Kept at 1vh to maintain your specific JS scroll-stack release offset */
   padding-bottom: 1vh;
-
-}
-
-@media (min-width: 1024px) {
-  .section {
-    padding-top: 2rem;
-  }
 }
 
 .header {
-  max-width: 64rem;
-  margin: 0 auto 3rem auto;
-  padding: 0 1.25rem;
+  /* Fluid container width */
+  max-width: clamp(40rem, 80vw, 64rem);
+  margin: 0 auto clamp(2rem, 5vw, 4rem) auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
   text-align: center;
 }
 
 .title {
-  font-size: 2.25rem;
+  /* Fluid typography: 2rem (mobile) -> 3.5rem (large desktop) */
+  font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
   font-weight: 700;
   color: #0f172a;
-  margin-bottom: 2rem;
-}
-
-@media (min-width: 1024px) {
-  .title {
-    font-size: 3rem;
-  }
+  margin-bottom: clamp(1rem, 2.5vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .description {
-  font-size: 1.125rem;
+  /* Fluid body text */
+  font-size: clamp(1rem, 1.25vw + 0.5rem, 1.125rem);
   color: #475569;
-  line-height: 1.625;
+  line-height: 1.75;
   text-align: justify;
 }
 
@@ -53,7 +47,8 @@
   display: flex;
   flex-direction: column; /* Stacks vertically on mobile */
   background-color: #ffffff;
-  border-radius: 2rem;
+  /* Fluid border-radius */
+  border-radius: clamp(1.5rem, 3vw, 2rem);
   overflow: hidden;
   box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1);
   border: 1px solid #f1f5f9;
@@ -68,30 +63,28 @@
 @media (min-width: 1024px) {
   .card {
     flex-direction: row; /* Splits perfectly side-by-side on desktop */
-    height: 550px; /* Fixed height to keep cards uniform */
+    /* Fluid height replacing fixed 550px. Scales smoothly with aspect ratio. */
+    height: clamp(450px, 45vw, 600px); 
   }
 }
 
 /* --- Text Half --- */
 .cardContent {
   flex: 1; /* Takes up exactly 50% of the space */
-  padding: 2.5rem;
+  /* Fluid padding: generous on desktop, compact on mobile */
+  padding: clamp(1.5rem, 4vw, 4rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-@media (min-width: 1024px) {
-  .cardContent {
-    padding: 4rem;
-  }
-}
-
 .cardTitle {
   font-weight: 700;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  /* Fluid heading: 1.5rem -> 2.25rem */
+  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
   color: #312e81;
+  line-height: 1.2;
 }
 
 .cardList {
@@ -100,12 +93,13 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  /* Fluid gap between list items */
+  gap: clamp(0.75rem, 2vw, 1.25rem);
 }
 
 .cardListItem {
   color: #475569;
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 1.25vw + 0.25rem, 1.125rem);
   line-height: 1.625;
   display: flex;
   align-items: flex-start;
@@ -113,9 +107,9 @@
 
 .cardBullet {
   color: #ec4899;
-  margin-right: 1rem;
+  margin-right: clamp(0.5rem, 1.5vw, 1rem);
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
   line-height: 1;
 }
 
@@ -123,7 +117,8 @@
 .cardMedia {
   position: relative;
   flex: 1; 
-  min-height: 300px; 
+  /* Fluid min-height ensures the video is never squished out of existence on mobile */
+  min-height: clamp(250px, 35vh, 400px); 
   background-color: #0f172a;
 }
 
@@ -134,6 +129,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  
+  /* Retained critical hardware acceleration */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;

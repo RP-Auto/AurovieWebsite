@@ -114,7 +114,6 @@ const Navbar = () => {
           
           <div className={`${styles.mobileAccordionContent} ${mobileDropdownOpen ? styles.mobileAccordionContentOpen : ""}`}>
             <RouterLink to="/about" className={styles.mobileSublink}>About Us</RouterLink>
-            <RouterLink to="/marketplace" className={styles.mobileSublink}>Marketplace</RouterLink>
             <RouterLink to="/careers" className={styles.mobileSublink}>Careers</RouterLink>
             <RouterLink to="/contact" className={styles.mobileSublink}>Contact</RouterLink>
           </div>

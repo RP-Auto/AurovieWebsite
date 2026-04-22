@@ -4,8 +4,9 @@
   min-height: 100vh;
   background-color: #0b0f19;
   color: #ffffff;
-  padding-top: 8rem;
-  padding-bottom: 6rem;
+  /* Fluid vertical padding */
+  padding-top: clamp(5rem, 10vw, 8rem);
+  padding-bottom: clamp(4rem, 8vw, 6rem);
   overflow: hidden;
   position: relative;
 }
@@ -14,27 +15,34 @@
 .bgGlow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
+  /* Fluid blur prevents it from completely washing out small mobile screens */
+  filter: blur(clamp(60px, 10vw, 120px));
   z-index: 0;
   opacity: 0.35;
   animation: breathe 8s ease-in-out infinite alternate;
+  
+  /* Hardware acceleration for continuous animations */
   transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform, opacity;
   pointer-events: none;
 }
 
 .glowPink {
   top: 5%;
   left: -10%;
-  width: 50vw;
-  height: 50vw;
+  /* Fluid bounds so glows don't overwhelm mobile or disappear on 4K */
+  width: clamp(300px, 50vw, 800px);
+  height: clamp(300px, 50vw, 800px);
   background: radial-gradient(circle, #ec4899 0%, transparent 70%);
 }
 
 .glowBlue {
   bottom: 10%;
   right: -10%;
-  width: 60vw;
-  height: 60vw;
+  /* Slightly larger blue glow */
+  width: clamp(350px, 60vw, 900px);
+  height: clamp(350px, 60vw, 900px);
   background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
   animation-delay: -4s;
 }
@@ -45,9 +53,11 @@
 }
 
 .container {
+  width: 100%;
   max-width: 80rem;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  /* Fluid edge padding */
+  padding: 0 clamp(1.25rem, 4vw, 2rem);
   position: relative;
   z-index: 10;
 }
@@ -56,48 +66,50 @@
 .hero {
   text-align: center;
   max-width: 56rem;
-  margin: 0 auto 5rem auto;
+  /* Fluid bottom margin */
+  margin: 0 auto clamp(3rem, 6vw, 5rem) auto;
 }
 
-
 .title {
-  font-size: 3rem;
+  /* Fluid typography: 2rem -> 4rem */
+  font-size: clamp(2.5rem, 5vw + 1rem, 4rem);
   font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  letter-spacing: -0.02em;
   background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-@media (min-width: 1024px) {
-  .title { font-size: 4rem; }
-}
-
 .subtitle {
-  font-size: 1.25rem;
+  /* Fluid body text */
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
   color: #94a3b8;
   line-height: 1.75;
 }
 
 /* --- Culture/Values Grid --- */
 .cultureSection {
-  margin-bottom: 8rem;
+  /* Fluid section spacing */
+  margin-bottom: clamp(4rem, 8vw, 8rem);
 }
 
 .sectionTitle {
-  font-size: 2rem;
+  /* Fluid section headings */
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
   font-weight: 700;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
   color: #ffffff;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  /* Fluid gap perfectly spaces the columns */
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 @media (min-width: 768px) {
@@ -109,8 +121,9 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.5rem;
-  padding: 2.5rem;
+  /* Fluid border-radius and padding */
+  border-radius: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
   transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
@@ -124,64 +137,69 @@
 }
 
 .iconWrapper {
-  width: 3.5rem;
-  height: 3.5rem;
+  /* Fluid icon sizing */
+  width: clamp(2.5rem, 5vw, 3.5rem);
+  height: clamp(2.5rem, 5vw, 3.5rem);
   background: rgba(236, 72, 153, 0.1);
   border: 1px solid rgba(236, 72, 153, 0.3);
-  border-radius: 1rem;
+  border-radius: clamp(0.75rem, 1.5vw, 1rem);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #f472b6;
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .cardTitle {
-  font-size: 1.25rem;
+  /* Fluid card titles */
+  font-size: clamp(1.125rem, 2vw + 0.25rem, 1.5rem);
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
 }
 
 .cardText {
   color: #94a3b8;
   line-height: 1.6;
+  font-size: clamp(0.95rem, 1.5vw + 0.25rem, 1.05rem);
 }
 
 /* --- "No Openings" & Talent Network Section --- */
 .talentSection {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
+  /* Fluid gaps and padding replace rigid breakpoints */
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
   background: rgba(15, 23, 42, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 2rem;
-  padding: 3rem 2rem;
+  border-radius: clamp(1.5rem, 4vw, 2rem);
+  padding: clamp(2rem, 5vw, 5rem) clamp(1.5rem, 4vw, 5rem);
 }
 
 @media (min-width: 1024px) {
   .talentSection {
     grid-template-columns: 1fr 1fr;
-    padding: 5rem;
   }
 }
 
 .talentInfo {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 .talentHeading {
-  font-size: 2.5rem;
+  /* Fluid typography: 2rem -> 3rem */
+  font-size: clamp(2rem, 4vw + 0.5rem, 3rem);
   font-weight: 700;
   color: #ffffff;
   line-height: 1.2;
 }
 
 .talentText {
-  font-size: 1.125rem;
+  /* Fluid body text */
+  font-size: clamp(1rem, 1.5vw + 0.25rem, 1.125rem);
   color: #cbd5e1;
   line-height: 1.7;
 }
@@ -192,22 +210,23 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1.5rem;
-  padding: 2.5rem;
+  border-radius: clamp(1rem, 3vw, 1.5rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: clamp(0.25rem, 1vw, 0.5rem);
 }
 
 .label {
-  font-size: 0.875rem;
+  /* Fluid label text */
+  font-size: clamp(0.75rem, 1.5vw + 0.25rem, 0.875rem);
   font-weight: 600;
   color: #cbd5e1;
   text-transform: uppercase;
@@ -218,10 +237,11 @@
   width: 100%;
   background: rgba(15, 23, 42, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  padding: 1rem 1.25rem;
+  border-radius: clamp(0.5rem, 1.5vw, 0.75rem);
+  /* Fluid padding for accessibility and touch targets */
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.25rem);
   color: #ffffff;
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 1.5vw + 0.25rem, 1rem);
   outline: none;
   transition: all 0.3s ease;
   font-family: inherit;
@@ -238,14 +258,15 @@
 }
 
 .submitBtn {
-  margin-top: 1rem;
+  margin-top: clamp(0.5rem, 2vw, 1rem);
   background-color: #ec4899;
   color: #ffffff;
   border: none;
-  padding: 1.25rem;
-  font-size: 1.125rem;
+  /* Fluid button padding */
+  padding: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(1rem, 1.5vw + 0.25rem, 1.125rem);
   font-weight: 700;
-  border-radius: 0.75rem;
+  border-radius: clamp(0.5rem, 1.5vw, 0.75rem);
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;

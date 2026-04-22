@@ -18,7 +18,8 @@
 
 @media (min-width: 1024px) {
   .headerNormal {
-    top: 1.5rem;
+    /* Fluid top spacing: 0.5rem on smaller laptops, up to 1.5rem on large screens */
+    top: clamp(0.5rem, 2vw, 1.5rem);
   }
 }
 
@@ -27,11 +28,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.25rem;
+  /* Fluid padding: scales seamlessly across all devices */
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.25rem, 4vw, 2rem);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
   
-  /* Uses the CSS variable passed from React for the background GIF */
   background-image: var(--nav-bg);
   background-size: cover;
   background-position: center;
@@ -48,16 +49,10 @@
   background-color: #312e81; /* indigo-900 fallback */
 }
 
-@media (min-width: 768px) {
-  .navbar {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
 @media (min-width: 1024px) {
   .navbarNormal {
-    margin: 0 8rem;
+    /* Fluid margins: creates a floating pill effect that scales with the screen */
+    margin: 0 clamp(2rem, 8vw, 8rem);
     border-radius: 9999px;
   }
 }
@@ -67,23 +62,19 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  /* Fluid margin to prevent crowding on tight screens */
+  margin-left: clamp(0rem, 2vw, 1rem);
 }
 
 .logoImage {
-  height: 2.5rem;
+  /* Fluid logo sizing: 2.5rem minimum, up to 3.5rem on desktop */
+  height: clamp(2.5rem, 5vw, 3.5rem);
   width: auto;
-  margin-left: 2vw;
   transition: transform 0.3s ease;
 }
 
 .logoImage:hover {
   transform: scale(1.05);
-}
-
-@media (min-width: 1024px) {
-  .logoImage {
-    height: 3.5rem;
-  }
 }
 
 /* --- Desktop Navigation --- */
@@ -95,9 +86,11 @@
   .desktopNav {
     display: flex;
     align-items: center;
-    margin-right: 3vw;
-    gap: 2rem;
-    font-size: 1.125rem;
+    margin-right: clamp(1rem, 3vw, 3rem);
+    /* Fluid gap between nav items */
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    /* Fluid typography for nav links */
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
     font-weight: 500;
   }
 }
@@ -148,7 +141,6 @@
   transform: rotate(180deg);
 }
 
-/* Invisible bridge to prevent accidental menu closing */
 .hoverBridge {
   position: absolute;
   top: 100%;
@@ -161,13 +153,13 @@
   position: absolute;
   top: calc(100% + 0.5rem);
   left: 0;
-  width: 12rem;
+  /* Fluid dropdown width to prevent text wrapping on smaller laptops */
+  width: clamp(12rem, 14vw, 14rem);
   background-color: #ffffff;
   border-radius: 0.75rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   border: 1px solid #f1f5f9;
   
-  /* Hidden State */
   opacity: 0;
   visibility: hidden;
   transform: scale(0.95);
@@ -179,7 +171,6 @@
   overflow: hidden;
 }
 
-/* Show Menu on Hover */
 .dropdownWrapper:hover .dropdownMenu {
   opacity: 1;
   visibility: visible;
@@ -187,7 +178,8 @@
 }
 
 .dropdownItem {
-  padding: 0.75rem 1.25rem;
+  /* Fluid padding for better touch/click targets */
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.25rem);
   color: #334155;
   font-weight: 500;
   text-decoration: none;
@@ -212,6 +204,8 @@
   background: none;
   border: none;
   cursor: pointer;
+  /* Ensure a minimum touch target size */
+  padding: 0.5rem;
 }
 
 @media (min-width: 1024px) {
@@ -229,13 +223,14 @@
   color: #ffffff;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 0;
-  gap: 0.5rem;
+  /* Fluid padding */
+  padding: clamp(1rem, 3vw, 2rem) 0;
+  gap: clamp(0.25rem, 1vw, 0.5rem);
   font-weight: 600;
-  font-size: 1.25rem;
+  /* Fluid typography for mobile links */
+  font-size: clamp(1.125rem, 4vw, 1.25rem);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   
-  /* Slide Animation */
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
 }
@@ -251,7 +246,8 @@
 }
 
 .mobileLink {
-  padding: 0.75rem 2rem;
+  /* Highly touch-friendly fluid padding */
+  padding: clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 5vw, 2.5rem);
   color: #ffffff;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -271,7 +267,8 @@
 }
 
 .mobileAccordionBtn {
-  padding: 0.75rem 2rem;
+  /* Matches .mobileLink padding */
+  padding: clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 5vw, 2.5rem);
   color: #ffffff;
   background: none;
   border: none;
@@ -311,14 +308,16 @@
 }
 
 .mobileAccordionContentOpen {
-  max-height: 16rem; /* Enough height to show all links */
+  /* Fluid max-height to handle varying nested items without snapping */
+  max-height: clamp(16rem, 30vh, 24rem);
 }
 
 .mobileSublink {
-  padding: 0.75rem 3rem;
+  /* Indented fluid padding for visual hierarchy */
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(2.5rem, 7vw, 4rem);
   color: #c7d2fe; /* indigo-200 */
   text-decoration: none;
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 3.5vw, 1.125rem);
   transition: color 0.3s ease;
 }
 

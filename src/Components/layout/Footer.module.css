@@ -1,18 +1,18 @@
 /* src/components/layout/Footer.module.css */
 
 .footer {
-  background-color: #0b0f19; /* Matches the deep dark tech theme */
+  background-color: #0b0f19;
   color: #e2e8f0;
-  border-top-left-radius: 3rem;
-  border-top-right-radius: 3rem;
+  /* Fluid border radius: 1.5rem on mobile, up to 3rem on desktop */
+  border-radius: clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem) 0 0;
   position: relative;
   z-index: 10;
-  margin-top: 1rem;
+  /* Fluid top margin */
+  margin-top: clamp(1.5rem, 4vw, 3rem);
   overflow: hidden;
   box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Premium subtle top glow border */
 .footer::before {
   content: '';
   position: absolute;
@@ -25,29 +25,25 @@
 }
 
 .container {
+  width: 100%;
   max-width: 90rem;
   margin: 0 auto;
-  padding: 4rem 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .container {
-    padding: 5rem 4rem 3rem 4rem;
-  }
+  /* Fluid padding: scales seamlessly between mobile and large desktops */
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 4rem) clamp(2rem, 4vw, 3rem);
 }
 
 /* --- Top Section: Links Grid --- */
 .linksGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
-  margin-bottom: 4rem;
+  /* Fluid gap between columns/rows */
+  gap: clamp(2rem, 5vw, 3rem);
+  margin-bottom: clamp(3rem, 6vw, 4rem);
 }
 
 @media (min-width: 768px) {
   .linksGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
   }
 }
 
@@ -66,15 +62,15 @@
 }
 
 .columnTitle {
-  font-size: 1.5rem;
+  /* Fluid font sizing for headings */
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.5rem);
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
   position: relative;
   padding-bottom: 0.75rem;
 }
 
-/* Pink underline accent for column titles */
 .columnTitle::after {
   content: '';
   position: absolute;
@@ -96,23 +92,23 @@
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: clamp(0.5rem, 1.5vw, 0.75rem);
 }
 
 .navButton {
   background: none;
   border: none;
   padding: 0;
-  color: #94a3b8; /* slate-400 */
-  font-size: 1.125rem;
+  color: #94a3b8;
+  /* Fluid font sizing for interactive elements */
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.125rem);
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: inherit;
 }
 
-/* Slide slightly to the right on hover */
 .navButton:hover {
-  color: #fbcfe8; /* pink-200 */
+  color: #fbcfe8;
   transform: translateX(4px);
 }
 
@@ -122,8 +118,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 3rem;
-  padding-top: 3rem;
+  gap: clamp(2rem, 5vw, 3rem);
+  padding-top: clamp(2rem, 5vw, 3rem);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -140,7 +136,7 @@
 }
 
 .newsletterTitle {
-  font-size: 1.25rem;
+  font-size: clamp(1.125rem, 2vw + 0.5rem, 1.25rem);
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 1rem;
@@ -156,7 +152,7 @@
 .formGroup {
   display: flex;
   width: 100%;
-  border-radius: 9999px; /* Fully rounded pill shape */
+  border-radius: 9999px;
   overflow: hidden;
   background-color: #1e293b;
   border: 1px solid #334155;
@@ -172,9 +168,10 @@
   flex-grow: 1;
   background: transparent;
   border: none;
-  padding: 1rem 1.5rem;
+  /* Fluid padding for touch targets */
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
   color: #ffffff;
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 1.5vw + 0.5rem, 1rem);
   outline: none;
 }
 
@@ -186,15 +183,15 @@
   background-color: #ec4899;
   color: #ffffff;
   border: none;
-  padding: 0 2rem;
+  padding: 0 clamp(1.25rem, 3vw, 2rem);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 1.5vw + 0.5rem, 1rem);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .submitBtn:hover {
-  background-color: #db2777; /* Darker pink on hover */
+  background-color: #db2777;
 }
 
 /* Brand Logo */
@@ -204,7 +201,8 @@
 }
 
 .logoImage {
-  height: 5rem;
+  /* Fluid image scaling */
+  height: clamp(3.5rem, 8vw, 5rem);
   width: auto;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -216,7 +214,7 @@
 
 /* --- Bottom Section: Copyright --- */
 .bottomBar {
-  margin-top: 3rem;
+  margin-top: clamp(2rem, 5vw, 3rem);
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
@@ -225,7 +223,7 @@
   justify-content: space-between;
   gap: 1rem;
   color: #64748b;
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 1.5vw + 0.5rem, 0.875rem);
 }
 
 @media (min-width: 768px) {
@@ -236,7 +234,7 @@
 
 .legalLinks {
   display: flex;
-  gap: 1.5rem;
+  gap: clamp(1rem, 3vw, 1.5rem);
 }
 
 .legalLink {
