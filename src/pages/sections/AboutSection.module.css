@@ -16,7 +16,7 @@
 @media (min-width: 1024px) {
   .section {
     flex-direction: row;
-    padding: 10rem 8rem;
+    padding: 5rem 4rem;
     gap: 4rem;
   }
 }
