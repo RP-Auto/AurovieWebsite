@@ -51,14 +51,14 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <nav className={styles.desktopNav}>
+          <RouterLink to="https://dockx.aurovielifesciences.in" className={styles.navLink} target="_blank" rel="noopener noreferrer">
+            DockX
+          </RouterLink>
+
           <RouterLink to="/products" className={styles.navLink}>
             Products
           </RouterLink>
           
-          <RouterLink to="/blog" className={styles.navLink}>
-            Blog
-          </RouterLink>
-
           {/* Desktop Dropdown */}
           <div className={styles.dropdownWrapper}>
             <button className={styles.dropdownBtn}>

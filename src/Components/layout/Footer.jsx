@@ -27,19 +27,36 @@ const footerLinks = {
 
 const Footer = () => {
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    console.log("Subscribed with email:", email);
-    setEmail(""); 
+    if (!email) return;
+
+    setIsSubmitting(true);
+    
+    // Simulate API Call
+    setTimeout(() => {
+      console.log("Subscribed with email:", email);
+      setEmail(""); 
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      
+      // Reset success message after 3 seconds
+      setTimeout(() => setIsSuccess(false), 3000);
+    }, 800);
   };
 
   const handleNavigation = (targetId) => {
     if (location.pathname === "/") {
       const element = document.getElementById(targetId);
-      if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     } else {
       navigate(`/#${targetId}`);
     }
@@ -49,12 +66,13 @@ const Footer = () => {
   const FooterList = ({ title, links }) => (
     <div className={styles.linkColumn}>
       <h3 className={styles.columnTitle}>{title}</h3>
-      <nav className={styles.nav}>
+      <nav className={styles.nav} aria-label={`${title} links`}>
         {links.map((link, idx) => (
           <button
             key={idx}
             onClick={() => handleNavigation(link.target)}
             className={styles.navButton}
+            aria-label={`Maps to ${link.name}`}
           >
             {link.name}
           </button>
@@ -74,11 +92,23 @@ const Footer = () => {
           <FooterList title="Services" links={footerLinks.services} />
         </div>
 
-        {/* Middle: Newsletter & Brand */}
+        {/* Middle: Brand & Newsletter */}
         <div className={styles.middleSection}>
           
+          <div className={styles.brandWrapper}>
+            <RouterLink to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <img 
+                src={AuroVie_Logo} 
+                alt="AuroVie Life Sciences Logo" 
+                className={styles.logoImage} 
+                loading="lazy" 
+              />
+            </RouterLink>
+            <p className={styles.brandTagline}>Innovating the future of life sciences.</p>
+          </div>
+
           <div className={styles.newsletterWrapper}>
-            <h4 className={styles.newsletterTitle}>Subscribe to our newsletter</h4>
+            <h4 className={styles.newsletterTitle}>Stay Updated</h4>
             <form onSubmit={handleSubscribe} className={styles.formGroup}>
               <input
                 type="email"
@@ -87,32 +117,27 @@ const Footer = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={styles.input}
+                disabled={isSubmitting}
+                aria-label="Email Address for Newsletter"
               />
-              <button type="submit" className={styles.submitBtn}>
-                Subscribe
+              <button 
+                type="submit" 
+                className={`${styles.submitBtn} ${isSuccess ? styles.successBtn : ''}`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : isSuccess ? "Subscribed! ✓" : "Subscribe"}
               </button>
             </form>
-          </div>
-
-          <div className={styles.brandWrapper}>
-            <RouterLink to="/" onClick={() => window.scrollTo(0, 0)}>
-              <img 
-                src={AuroVie_Logo} 
-                alt="AuroVie Logo" 
-                className={styles.logoImage} 
-                loading="lazy" 
-              />
-            </RouterLink>
           </div>
 
         </div>
 
         {/* Bottom: Copyright & Legal */}
         <div className={styles.bottomBar}>
-          <p>&copy; {new Date().getFullYear()} AuroVie Life Sciences. All rights reserved.</p>
+          <p className={styles.copyright}>&copy; {new Date().getFullYear()} AuroVie Life Sciences. All rights reserved.</p>
           <div className={styles.legalLinks}>
-            <RouterLink to="/" className={styles.legalLink}>Privacy Policy</RouterLink>
-            <RouterLink to="/" className={styles.legalLink}>Terms of Service</RouterLink>
+            <RouterLink to="/privacy" className={styles.legalLink}>Privacy Policy</RouterLink>
+            <RouterLink to="/terms" className={styles.legalLink}>Terms of Service</RouterLink>
           </div>
         </div>
 

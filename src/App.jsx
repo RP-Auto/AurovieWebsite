@@ -1,13 +1,16 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from '../src/Components/layout/MainLayout';
-// src/App.jsx (Snippet addition)
-import ProductsPage from './pages/products/ProductsPage';
-import ContactPage from './pages/contact/ContactPage';
-import LandingPage from './pages/Landing/LandingPage';
-import BlogPage from './pages/Blog/BlogPage';
-import AboutPage from './pages/about/AboutPage';
-import CareersPage from './pages/careers/CareersPage';
+
+// Dynamically import pages for code-splitting
+const LandingPage = lazy(() => import('./pages/Landing/LandingPage'));
+const ProductsPage = lazy(() => import('./pages/products/ProductsPage'));
+const ContactPage = lazy(() => import('./pages/contact/ContactPage'));
+const BlogPage = lazy(() => import('./pages/Blog/BlogPage'));
+const AboutPage = lazy(() => import('./pages/about/AboutPage'));
+const CareersPage = lazy(() => import('./pages/careers/CareersPage'));
+const TermsOfService = lazy(() => import('./pages/legal/TermsOfService'));
+const PrivacyPolicy = lazy(() => import('./pages/legal/PrivacyPolicy'));
 
 // A simple loading spinner fallback
 const Loader = () => (
@@ -28,6 +31,8 @@ const App = () => {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/careers" element={<CareersPage />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Route>
         </Routes>
       </Suspense>

@@ -1,0 +1,157 @@
+/* src/pages/legal/Legal.module.css */
+
+.pageWrapper {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #fafbfc;
+  /* Subtle grid background matching the reference images */
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Header Section --- */
+.header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-top: clamp(2rem, 5vw, 3rem);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f0f4ff;
+  color: #3b82f6;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid #e0e7ff;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.titleHighlight {
+  color: #3b82f6; /* Blue matching the reference */
+}
+
+.privacyHighlight {
+  color: #0ea5e9; /* Light blue matching the privacy reference */
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 500;
+  max-width: 600px;
+}
+
+/* --- Main Content Card --- */
+.card {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 52rem; /* Wider format for the page look */
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0,0,0,0.02);
+  padding: clamp(2rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.icon {
+  font-size: 1.25rem;
+  color: #475569;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0;
+}
+
+/* --- Lists --- */
+.list {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.list li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.list li strong {
+  color: #334155;
+  font-weight: 600;
+}
+
+/* --- Disclaimer/Warning Box --- */
+.disclaimerBox {
+  background-color: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  padding: 1.5rem;
+  border-radius: 0.25rem 0.5rem 0.5rem 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.disclaimerText {
+  color: #78350f;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.disclaimerText strong {
+  color: #92400e;
+  font-weight: 700;
+  margin-right: 0.25rem;
+}
